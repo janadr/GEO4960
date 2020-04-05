@@ -78,7 +78,7 @@ for ax, A in zip(axes, As):
     ax.set_aspect("equal")
 axes[0].set_ylabel("Y", fontsize=14)
 fig.tight_layout()
-fig.savefig(figdir + "oppg4_2.pdf")
+fig.savefig(figdir + "oppg4_1.pdf")
 
 
 fig, axes = plt.subplots(2, 2, figsize=(10, 8), sharex=True, sharey=True)
@@ -88,9 +88,11 @@ blocked = np.array([[q1_blocked(X, Y), q2_blocked(X, Y)], [psi1_blocked(X, Y), p
 for row in range(axes.shape[0]):
     for col in range(axes.shape[1]):
         axes[row, col].contour(X, Y, np.ma.masked_where(qmean(X, Y) < 1, closed[row, col]),
-                                colors="black", linewidths=2, levels=8)
+                                colors="black", linewidths=2, levels=8
+                                )
         axes[row, col].contour(X, Y, np.ma.masked_where(qmean(X, Y) > 1, blocked[row, col]),
-                                colors="black", linewidths=2, levels=8)
+                                colors="black", linewidths=2, levels=8
+                                )
         axes[row, col].contour(X, Y, qmean(X, Y) - 1,
                             levels=0, colors="red", linewidths=2, linestyles="dashed"
                             )
@@ -98,5 +100,5 @@ for row in range(axes.shape[0]):
         axes[row, col].set_title(names[row, col], fontsize=18)
     axes[row, 0].set_ylabel("Y", fontsize=14)
 fig.tight_layout()
-fig.savefig(figdir + "oppg4_1.pdf")
+fig.savefig(figdir + "oppg4_2.pdf")
 plt.show()
